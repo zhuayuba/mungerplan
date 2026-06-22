@@ -39,7 +39,8 @@ details .content{padding:0 24px 20px;color:#444}
 .divider-solid{border:0;height:1px;background:linear-gradient(to right,transparent,#e5e0d8,transparent);margin:48px 0}
 footer{text-align:center;padding:60px 24px;color:#999;font-size:14px;font-family:-apple-system,"PingFang SC",sans-serif}
 @media(max-width:600px){body{font-size:16px}.hero{padding:60px 20px}.intro-card{padding:28px 20px}section{padding:40px 0}details summary{padding:14px 18px}}
-</style>
+
+@media(max-width:768px){.mp-mobile-bar{display:flex!important}}</style>
 </head>
 <body>
 <header class="hero">
@@ -173,17 +174,7 @@ document.addEventListener("contextmenu",function(e){
  var s=window.getSelection();if(!s||s.isCollapsed||!s.toString().trim())return;
  e.preventDefault();
  try{var r=s.getRangeAt(0);sv=s.toString().trim();sr=r.cloneRange();show(e.clientX,e.clientY);}catch(er){}
-});););
-
-document.addEventListener("selectionchange",function(){
- if(pu&&pu.style.display!=="none")return;
- var _sc=setTimeout.bind(null,function(){
-  var s=window.getSelection();if(!s||s.isCollapsed||!s.toString().trim()){hide();return;}
-  try{var r=s.getRangeAt(0),rect=r.getBoundingClientRect();if(!rect||rect.width===0){hide();return;}
-  sv=s.toString().trim();sr=r.cloneRange();show(rect.left+rect.width/2,rect.bottom+window.scrollY);}catch(er){hide();}
- },150);
- _sc();
-}
+}););
 document.addEventListener("mousedown",function(e){
  if(tb&&tb.contains(e.target))return;
  if(pu&&pu.style.display!=="none"){if(pu.contains(e.target))return;pu.style.display="none";}
@@ -271,6 +262,25 @@ function badge(){var el=document.getElementById("bdg");if(el){var c=_h.length;el
 function setupBtn(){if(document.getElementById("fab"))return;var b=document.createElement("button");b.id="fab";b.innerHTML='📒 笔记本 <span id="bdg" style="background:#c8a45c;color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:4px;font-weight:600;display:none;">0</span>';b.style.cssText="position:fixed;bottom:24px;right:24px;z-index:99997;background:#2d2d3f;color:#f0ede8;padding:10px 18px;border-radius:24px;font-family:-apple-system,PingFang SC,sans-serif;font-size:13px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.15);cursor:pointer;border:1px solid rgba(255,255,255,.08);";b.onmouseover=function(){b.style.background="#3d3d55";b.style.transform="translateY(-2px)";};b.onmouseout=function(){b.style.background="#2d2d3f";b.style.transform="";};b.onclick=function(){tog();};document.body.appendChild(b);badge();}
 var st=document.createElement("style");st.textContent=".mh{background:#f5d742;color:inherit;border-radius:2px;padding:0 2px;cursor:pointer;}.mh:hover{background:#ffeb7a;}.mc{transition:box-shadow .15s;}.mc:hover{box-shadow:0 1px 6px rgba(0,0,0,.06);}.mc button:hover{background:#eee!important;}::selection{background:#f5d742;color:#1a1a2e;}";document.head.appendChild(st);
 restore();setupBtn();
+document.getElementById("mb-hl").onclick=function(){
+ var s=window.getSelection();if(!s||s.isCollapsed||!s.toString().trim())return;
+ sv=s.toString().trim();try{sr=s.getRangeAt(0).cloneRange();}catch(e){sr=null;}
+ addHl(sv,"");toast("⭐ 已标记");badge();
+ if(sr){try{var m=document.createElement("mark");m.className="mh";m.style.cssText="background:#f5d742;color:inherit;border-radius:2px;padding:0 2px;cursor:pointer;";sr.surroundContents(m);m.style.background="#ffeb7a";setTimeout(function(){m.style.background="#f5d742";},300);}catch(e){}}
+ s.removeAllRanges();sv="";sr=null;
+};
+document.getElementById("mb-note").onclick=function(){
+ var s=window.getSelection();if(!s||s.isCollapsed||!s.toString().trim()){toast("请先选中文字");return;}
+ sv=s.toString().trim();try{sr=s.getRangeAt(0).cloneRange();}catch(e){sr=null;}
+ var q=document.getElementById("mq");if(!q)return;
+ q.textContent="「"+sv.slice(0,100)+(sv.length>100?"…」":"」");q.dataset.text=sv;
+ document.getElementById("mt").value="";
+ pu.style.display="block";
+ var top=Math.max(20,window.innerHeight-400);pu.style.top=top+"px";
+ pu.style.left="50%";pu.style.transform="translateX(-50%)";
+ document.getElementById("mt").focus();
+};
+
 })();
 </script>
 </body>
