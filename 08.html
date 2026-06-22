@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>芒格计划 · 08：思想的基石</title>
+<style>
+:root{--bg:#faf8f5;--text:#1a1a2e;--accent:#c8a45c;--accent-dark:#a8883a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Georgia","Noto Serif SC",serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:17px}
+.hero{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);color:#f0ede8;padding:100px 24px 80px;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(200,164,92,0.12),transparent 60%)}
+.hero>*{position:relative;z-index:1}
+.hero-badge{display:inline-block;border:1px solid var(--accent);color:var(--accent);font-family:-apple-system,"PingFang SC",sans-serif;font-size:12px;letter-spacing:3px;padding:4px 16px;border-radius:20px;margin-bottom:32px;text-transform:uppercase}
+.hero h1{font-size:clamp(32px,6vw,56px);font-weight:700;letter-spacing:2px;margin-bottom:12px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .sub{font-size:clamp(16px,2.5vw,22px);color:#b8b0a0;font-family:-apple-system,"PingFang SC",sans-serif;font-weight:300;margin-bottom:8px}
+.hero .meta{font-family:-apple-system,"PingFang SC",sans-serif;font-size:13px;color:#888;letter-spacing:1px}
+.container{max-width:740px;margin:0 auto;padding:0 24px}
+.intro{margin-top:-40px;position:relative;z-index:2}
+.intro-card{background:#fff;border-radius:12px;padding:40px 36px;box-shadow:0 4px 24px rgba(0,0,0,0.06);border:1px solid #e5e0d8}
+.intro-card p{margin-bottom:16px;color:#444}.intro-card p:last-child{margin-bottom:0}
+section{padding:60px 0}
+.section-label{font-family:-apple-system,"PingFang SC",sans-serif;font-size:11px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+h2{font-size:28px;font-weight:700;margin-bottom:24px;line-height:1.4}
+h3{font-size:20px;font-weight:600;margin:32px 0 12px;color:#1a1a2e}
+p{margin-bottom:16px;color:#444}
+blockquote{background:#f3f0ea;border-left:4px solid var(--accent);padding:20px 24px;margin:24px 0;border-radius:0 8px 8px 0;font-style:italic;color:#555}
+blockquote cite{display:block;margin-top:8px;font-size:14px;font-style:normal;color:var(--muted)}
+.highlight-box{background:linear-gradient(135deg,#fdf8ee,#faf3e0);border:1px solid #e8dcc8;border-radius:10px;padding:28px 32px;margin:28px 0}
+.highlight-box .label{font-family:-apple-system,"PingFang SC",sans-serif;font-size:12px;letter-spacing:2px;color:var(--accent-dark);margin-bottom:8px}
+.highlight-box p{margin-bottom:0;color:#5a4a2a}
+details{background:#fff;border:1px solid #e5e0d8;border-radius:10px;margin:16px 0;overflow:hidden}
+details summary{cursor:pointer;padding:18px 24px;font-weight:600;font-size:17px;list-style:none;display:flex;align-items:center;gap:12px;user-select:none}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:'+';display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:16px;flex-shrink:0}
+details[open] summary::before{content:'−'}
+details .content{padding:0 24px 20px;color:#444}
+.divider-solid{border:0;height:1px;background:linear-gradient(to right,transparent,#e5e0d8,transparent);margin:48px 0}
+footer{text-align:center;padding:60px 24px;color:#999;font-size:14px;font-family:-apple-system,"PingFang SC",sans-serif}
+@media(max-width:600px){body{font-size:16px}.hero{padding:60px 20px}.intro-card{padding:28px 20px}section{padding:40px 0}details summary{padding:14px 18px}}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="hero-badge">芒格计划 · 第8期</div>
+<h1>思想的<em>基石</em></h1>
+<p class="sub">如何像物理学家一样思考？</p>
+<p class="meta">第一性原理 × First Principles</p>
+</header>
+<div class="container">
+<div class="intro"><div class="intro-card">
+<p><strong>如果有人告诉你，电池的价格不可能低于600美元/千瓦时，你会怎么想？</strong></p>
+<p>大多数人的答案是："行业专家都这么说，那应该就是这样吧。"</p>
+<p>但埃隆·马斯克的答案是："等一下——电池是由什么做成的？"他查了伦敦金属交易所的现货价格，算了一笔账：钴、镍、铝、碳、聚合物……加在一起，原材料成本只有80美元/千瓦时。剩下的那520美元去哪里了？答案是：<strong>供应链的层层加价、过时的生产工艺和"因为别人都这么做"的组织惯性。</strong></p>
+<p>这就是第一性原理的威力：当所有人都困在类比里的时候，你回到了最基本的、不可再拆解的事实。</p>
+</div></div>
+
+<section>
+<span class="section-label">Week 8</span>
+<h2>思想的基石</h2>
+
+<h3>🔬 硬科学模型：第一性原理——从基本事实出发</h3>
+<p><strong>第一性原理（First Principles）</strong>的概念可以追溯到亚里士多德。他在《形而上学》中定义它为"一个事物最基础的、不能再被推导的命题或假设"——剥掉所有别人告诉你的东西之后，剩下来的那个不可动摇的基石。</p>
+<p>两千多年后，马斯克用一个粗暴的比喻把它带回了大众视野："要把知识看作一棵语义树——在进入叶子（细节）之前，确保你理解了树干和大树枝（基本原理）。"</p>
+<p>它和"类比思维"是对立的两极。<strong>类比思维</strong>说："别人都是这么做的，所以我们也这么做。"<strong>第一性原理思维</strong>说："这件事从物理定律上讲是怎么回事？如果不参考任何已有的做法，我会怎么解决它？"</p>
+<p>类比思维高效而安全，它是人类文明的默认设置。但每当类比思维统治一个领域太久，那些无法用类比突破的瓶颈就会形成。而每一次突破——无论是科学革命还是商业颠覆——几乎都来自于有人回到了第一性原理，推倒了所有"别人都这么做"的假设。</p>
+
+<blockquote>"第一性原理是剥掉所有的假设、传统和'别人都这么做'，一直剥到不能再剥的基本事实，然后从那里重新开始推理。"</blockquote>
+
+<h3>💎 明珠概念</h3>
+<div class="highlight-box"><div class="label">一句话记住它</div>
+<p><strong>不继承别人的假设。把问题拆到最基本的、不可动摇的事实层面，然后从零开始推理。</strong></p></div>
+
+<h3>🌙 晚间引子</h3>
+<p><strong>为什么马斯克说"电池不可能便宜"是错的？</strong></p>
+<p>当马斯克在2000年代初决定做电动车时，所有人告诉他电池太贵了，电动车不可能普及。整个汽车行业已经在这个"常识"下运作了几十年。</p>
+<p>但马斯克的思考路径完全不同。他没有接受"电池每千瓦时600美元"这个行业共识。他做了一件极其简单的事：<strong>打开元素周期表。</strong></p>
+<p>"电池是由什么做成的？"碳、镍、铝、钴、聚合物。这些东西在伦敦金属交易所的现货价格是多少？算出来：80美元/千瓦时。那剩下的520美元是什么？是低效的供应链、过时的生产工艺、供应商层层加价的利润——<strong>这些都不是物理规律决定的，而是"大家一直这么做"决定的。</strong></p>
+<p>马斯克随后投资建立超级工厂（Gigafactory），优化供应链、垂直整合、改进生产工艺，硬生生把电池成本降到了行业认为绝对不可能的数字。特斯拉Model 3能够以3.5万美元的价格量产，靠的不是技术奇迹，而是第一性原理碾压了类比思维。</p>
+
+<h3>🏛️ 人文社科对照</h3>
+<details><summary>科学革命——哥白尼、伽利略、爱因斯坦的第一性原理时刻</summary><div class="content">
+<p><strong>每一次科学革命，都是有人站起来说："等等，我们为什么这么确定？"</strong></p>
+<p>哥白尼之前，所有人都"知道"地球是宇宙的中心。亚里士多德说过，托勒密算过，教会认可了，两千年的常识都在说同一件事。没有人想过要重新检查这个假设。</p>
+<p>哥白尼做的事不是计算——托勒密的体系其实算得也很准。他做的是<strong>回到基本观察</strong>：行星的运动轨迹到底是什么样的？如果先从"也许地球不是中心"这个第一性原理出发，行星运动会不会更简洁？答案是会。一个简洁到可怕的数学模型，碾压了托勒密几十层嵌套的圆。</p>
+<p>伽利略也一样。他没有接受亚里士多德的"重物比轻物落得快"——他上了比萨斜塔，扔了两个球。爱因斯坦更极端：他没有接受"时间和空间是绝对的"这个所有人都觉得理所当然的假设。他问了一个五岁小孩的问题："如果我追上一束光，我会看到什么？"——从这个问题出发，狭义相对论诞生了。</p>
+</div></details>
+<details><summary>商业中的第一性原理——贝索斯的"不变之问"</summary><div class="content">
+<p><strong>大多数人都在问"未来十年什么会变？"贝索斯问的是"未来十年什么不会变？"</strong></p>
+<p>杰夫·贝索斯说过一句非常有名的话："我经常被问到：'未来十年什么会变？'但我几乎从来没有被问到：'未来十年什么不会变？'而我认为第二个问题实际上更重要。"</p>
+<p>贝索斯的推理是：在零售业里，顾客永远想要更低的价格、更多的选择、更快的配送。这三件事在十年后不会变，在一百年后也不会变。所以亚马逊把所有资源都投入到这三件事上——而不是追逐今年的热门趋势。</p>
+<p>这就是第一性原理的逆向运用：<strong>不要去预测变化，而去找到不变的基础事实，然后围绕它建立战略。</strong>当竞争对手每年都在追逐新潮流、疲于奔命的时候，亚马逊在做一个只会越来越深的护城河。结果你已经看到了。</p>
+</div></details>
+<details><summary>日常生活中的第一性原理——你做的事，有多少是"因为别人都这么做"？</summary><div class="content">
+<p><strong>第一性原理不只属于天才和亿万富翁。它属于每一个愿意停下来问"我为什么这么做"的人。</strong></p>
+<p>你每天早上九点上班，是因为你有高效的生物钟，还是因为社会约定？你选择这个职业，是因为你的能力结构天然匹配，还是因为"这是一个好工作"的社会共识？你认为"买房是人生的必须"，是从你的真实需求推导出来的，还是从父母、朋友和社交媒体那里继承来的？</p>
+<p>第一性原理不是要你推翻一切——它只是要你<strong>验证一下地基</strong>。如果你检查了地基，发现它是坚实的，那就带着更大的信心继续走。如果你发现地基是别人的假设堆起来的——那就有了选择。</p>
+</div></details>
+
+<h3>🔄 反过来想</h3>
+<div class="highlight-box" style="background:linear-gradient(135deg,#eef2f7,#e4e9f0);border-color:#c0c8d8;">
+<div class="label">🚀 思考题</div>
+<p><strong>你现在生活中哪些事是"因为别人都这么做"而做的？如果从零开始推理——不考虑任何人的期望、社会的惯例、行业的常识——你会怎么做？</strong></p>
+<p style="margin-top:12px;font-size:15px;color:#4a5a70;">提示：不一定真的要去改，但"知道哪些事是类比驱动的"本身就是一种力量。列出三件你做、但你不知道"为什么"的事——不是因为它们肯定是错的，而是因为你从未检查过它们的理由。</p></div>
+
+<hr class="divider-solid">
+
+<h3>🧠 给你的启示</h3>
+<p>第一性原理是芒格推崇的所有思维模型中最底层的一个。因为<strong>它不是一个具体领域的模型，它是一种元能力——一种"检查你所有模型本身的模型"。</strong></p>
+<p>当你面对一个棘手问题的时候，不要急着问"别人是怎么做的"。先问："这其中哪些是毋庸置疑的基本事实？"从这里出发，你会发现自己少了很多束缚——因为绝大多数"行规""惯例""常识"，都没有你想象的那么坚不可摧。</p>
+<p><strong>不要继承别人的假设。</strong>一个假设在被你亲自验证之前，对你来说只是一个故事。把每个领域的问题拆到"元素周期表级别"——拆到你无法再继续拆解为止。然后从那里开始搭建。你会发现，太多你曾经觉得"绝对不可能"的事情，其实只是"还没人试过"。</p>
+<p>第一性原理思维最难的地方不是"不够聪明"，而是<strong>它太孤独了</strong>。当你拒绝接受所有人的默认假设时，你会看起来像一个什么都不会的初学者。但每一次真正的突破——无论是科学上的、商业上的，还是你个人生活上的——都来自这种孤独的、从零开始的诚实。</p>
+
+<blockquote>"我说不清来世会怎样，但我可以肯定地告诉大家一个颠扑不破的真理：任何领域的知识要想成为你的第二天性，务必从彻底理解它的基础开始。记住那句话：树有多高，根有多深。"<cite>—— 查理·芒格</cite></blockquote>
+</section>
+<hr class="divider-solid">
+<footer>
+<p>芒格计划 · 第8期</p>
+<nav style="margin-top:12px;display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;">
+<a href="07.html" style="color:#c8a45c;text-decoration:none;font-size:14px;">← 上一篇：隐形的曲线</a>
+<span style="color:#ddd;">|</span>
+<a href="index.html" style="color:#c8a45c;text-decoration:none;font-size:14px;">返回目录</a>
+<span style="color:#ddd;">|</span>
+<a href="09.html" style="color:#c8a45c;text-decoration:none;font-size:14px;font-weight:600;">下一篇：失灵的预测 →</a>
+</nav>
+</footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+var _h=[];
+try{var r=localStorage.getItem("munger_backup");if(r)_h=JSON.parse(r);}catch(e){}
+function _s(){try{localStorage.setItem("munger_backup",JSON.stringify(_h));}catch(e){}}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function info(){
+ var b=document.querySelector(".hero-badge");if(!b)return{n:0};
+ var t=b.textContent,m=t.match(/(\d+)/);
+ if(!m){var cn={"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9,"十":10};var x=t.match(/[一二三四五六七八九十]+/);if(x)m=[x[0],cn[x[0]]||0];}
+ return{n:m?parseInt(m[1]):0,t:(document.querySelector(".hero h1")?.textContent||"")};
+}
+function addHl(tx,nt){
+ var i=info();if(!i.n)return null;
+ var o={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),issue:i.n,title:i.t,text:tx.trim(),note:(nt||"").trim(),ts:new Date().toISOString()};
+ _h.push(o);_s();return o;
+}
+function delHl(id){_h=_h.filter(function(x){return x.id!==id;});_s();}
+function updHl(id,nt){var x=_h.find(function(y){return y.id===id;});if(x){x.note=nt.trim();x.upd=new Date().toISOString();_s();}}
+var tb=null,pu=null,sv="",sr=null;
+function mkUI(){
+ if(tb)return;
+ tb=document.createElement("div");tb.id="tb";tb.style.cssText="position:fixed;z-index:99999;display:none;background:#2d2d3f;border-radius:8px;padding:4px;box-shadow:0 4px 16px rgba(0,0,0,.25);font-family:-apple-system,PingFang SC,sans-serif;gap:4px;";
+ var bb=document.createElement("button");bb.textContent="⭐ 标记";bb.style.cssText="border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit;background:#f5d742;color:#1a1a2e;font-weight:600;";bb.onmouseover=function(){bb.style.background="#ffe066";};bb.onmouseout=function(){bb.style.background="#f5d742";};bb.onclick=function(){act(false);};
+ var nb=document.createElement("button");nb.textContent="📝 记笔记";nb.style.cssText="border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit;background:#444;color:#eee;";nb.onmouseover=function(){nb.style.background="#555";};nb.onmouseout=function(){nb.style.background="#444";};nb.onclick=function(){act(true);};
+ tb.appendChild(bb);tb.appendChild(nb);document.body.appendChild(tb);
+ pu=document.createElement("div");pu.id="pu";pu.style.cssText="position:fixed;z-index:100000;display:none;background:#fff;border-radius:12px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.2);font-family:-apple-system,PingFang SC,sans-serif;width:340px;max-width:90vw;";
+ pu.innerHTML='<div style="font-size:14px;font-weight:600;margin-bottom:10px;color:#333;">📝 记录灵感</div><div id="mq" style="font-size:13px;color:#888;margin-bottom:10px;padding:8px 12px;background:#f5f5f5;border-radius:6px;line-height:1.5;max-height:80px;overflow-y:auto;"></div><textarea id="mt" placeholder="写下你的想法……" style="width:100%;min-height:80px;border:1px solid #ddd;border-radius:6px;padding:8px;font-size:14px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px;"><button id="mc" style="border:none;background:#f0f0f0;color:#666;padding:6px 16px;border-radius:6px;cursor:pointer;font-size:13px;">取消</button><button id="ms" style="border:none;background:#2d8a6e;color:#fff;padding:6px 16px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;">保存笔记</button></div>';
+ document.body.appendChild(pu);
+ document.getElementById("mc").onclick=function(){pu.style.display="none";};
+ document.getElementById("ms").onclick=function(){var n=document.getElementById("mt").value,q=document.getElementById("mq").dataset.text||"";if(q){addHl(q,n);pu.style.display="none";document.getElementById("mt").value="";toast("✅ 笔记已保存");badge();}};
+}
+function show(x,y){mkUI();tb.style.display="flex";tb.style.left=Math.max(8,Math.min(x,window.innerWidth-180))+"px";tb.style.top=(y+12)+"px";}
+function hide(){if(tb)tb.style.display="none";sv="";sr=null;}
+function act(note){
+ var t=sv;if(!t)return;
+ if(note){var q=document.getElementById("mq");if(!q)return;q.textContent="「"+t.slice(0,100)+(t.length>100?"…」":"」");q.dataset.text=t;document.getElementById("mt").value="";var tr=tb.getBoundingClientRect();pu.style.top=Math.max(20,tr.top-320)+"px";pu.style.left=Math.max(20,Math.min(tr.left,window.innerWidth-360))+"px";pu.style.display="block";document.getElementById("mt").focus();hide();return;}
+ addHl(t,"");toast("⭐ 已标记");badge();
+ if(sr){try{var m=document.createElement("mark");m.className="mh";m.style.cssText="background:#f5d742;color:inherit;border-radius:2px;padding:0 2px;cursor:pointer;";sr.surroundContents(m);m.style.background="#ffeb7a";setTimeout(function(){m.style.background="#f5d742";},300);}catch(e){sr=null;}}
+ var s=window.getSelection();if(s)s.removeAllRanges();sv="";sr=null;hide();
+}
+document.addEventListener("contextmenu",function(e){
+ if(pu&&pu.style.display!=="none")return;
+ var s=window.getSelection();if(!s||s.isCollapsed||!s.toString().trim())return;
+ e.preventDefault();
+ try{var r=s.getRangeAt(0);sv=s.toString().trim();sr=r.cloneRange();show(e.clientX,e.clientY);}catch(er){}
+});
+document.addEventListener("mousedown",function(e){
+ if(tb&&tb.contains(e.target))return;
+ if(pu&&pu.style.display!=="none"){if(pu.contains(e.target))return;pu.style.display="none";}
+ hide();
+});
+function restore(){
+ var i=info();if(!i.n)return;
+ var list=_h.filter(function(x){return x.issue===i.n;});if(!list.length)return;
+ setTimeout(function(){list.forEach(function(h){restoreOne(h);});},300);
+}
+function restoreOne(h){
+ try{
+  var c=document.querySelector(".container")||document.body;
+  var w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT),ns=[];
+  while(w.nextNode())ns.push(w.currentNode);
+  for(var i=0;i<ns.length;i++){
+   var nd=ns[i],idx=nd.textContent.indexOf(h.text);if(idx<0)continue;
+   var r=document.createRange();r.setStart(nd,idx);r.setEnd(nd,idx+h.text.length);
+   var m=document.createElement("mark");m.className="mh";m.dataset.id=h.id;
+   m.style.cssText="background:#f5d742;color:inherit;border-radius:2px;padding:0 2px;cursor:pointer;";
+   if(h.note){m.title="💡 "+h.note;m.style.borderBottom="2px solid #d4a017";}
+   m.onclick=function(id,note){return function(e){e.stopPropagation();bubble(e.target,id,note);};}(h.id,h.note);
+   r.surroundContents(m);return;
+  }
+ }catch(e){}
+}
+function bubble(mk,id,note){
+ var e=document.querySelector(".mp-bb");if(e)e.remove();
+ var b=document.createElement("div");b.className="mp-bb";
+ b.style.cssText="position:fixed;z-index:99998;background:#fff;border-radius:10px;padding:14px 18px;box-shadow:0 4px 24px rgba(0,0,0,.15);font-family:-apple-system,PingFang SC,sans-serif;font-size:14px;max-width:320px;border:1px solid #eee;";
+ var r=mk.getBoundingClientRect();b.style.top=(r.bottom+8)+"px";b.style.left=Math.max(8,Math.min(r.left,window.innerWidth-340))+"px";
+ var h='<div style="font-size:12px;color:#999;margin-bottom:6px;">已标记'+(note?" · 有笔记":"")+'</div>';
+ if(note)h+='<div style="color:#333;line-height:1.5;margin-bottom:10px;padding:8px 10px;background:#faf6ee;border-radius:6px;">💬 '+esc(note)+'</div>';
+ h+='<div style="display:flex;gap:6px;">';
+ if(!note)h+='<button id="bb_add" style="border:none;background:#2d8a6e;color:#fff;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;">添加笔记</button>';
+ h+='<button id="bb_del" style="border:none;background:#f5f5f5;color:#c0392b;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;">删除标记</button></div>';
+ b.innerHTML=h;document.body.appendChild(b);
+ document.getElementById("bb_del").onclick=function(){delHl(id);mk.style.opacity="0.3";mk.style.background="#eee";b.remove();};
+ var ab=document.getElementById("bb_add");if(ab)ab.onclick=function(){
+  b.innerHTML='<div style="font-size:13px;font-weight:600;margin-bottom:8px;color:#333;">✏️ 添加笔记</div><textarea id="bb_ta" placeholder="写下你的想法……" style="width:100%;min-height:60px;border:1px solid #ddd;border-radius:6px;padding:8px;font-size:13px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea><div style="display:flex;gap:6px;justify-content:flex-end;margin-top:8px;"><button id="bb_cancel" style="border:none;background:#f0f0f0;color:#666;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;">取消</button><button id="bb_save" style="border:none;background:#2d8a6e;color:#fff;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;">保存</button></div>';
+  document.getElementById("bb_ta").focus();
+  document.getElementById("bb_cancel").onclick=function(){b.remove();};
+  document.getElementById("bb_save").onclick=function(){var n=document.getElementById("bb_ta").value;if(n){updHl(id,n);mk.title="💡 "+n;mk.style.borderBottom="2px solid #d4a017";toast("✅ 笔记已保存");}b.remove();};
+ };
+ var cl=function(ev){if(!b.contains(ev.target)&&ev.target!==mk){b.remove();document.removeEventListener("mousedown",cl);}};
+ setTimeout(function(){document.addEventListener("mousedown",cl);},0);
+}
+function toast(msg){
+ var t=document.createElement("div");t.textContent=msg;
+ t.style.cssText="position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#2d2d3f;color:#fff;padding:10px 24px;border-radius:8px;font-family:-apple-system,PingFang SC,sans-serif;font-size:14px;z-index:999999;box-shadow:0 4px 20px rgba(0,0,0,.2);opacity:0;transition:opacity .3s;";
+ document.body.appendChild(t);requestAnimationFrame(function(){t.style.opacity="1";});
+ setTimeout(function(){t.style.opacity="0";setTimeout(function(){t.remove();},300);},2000);
+}
+var sd=null,ov=null;
+function mkSide(){
+ if(sd)return;
+ ov=document.createElement("div");ov.style.cssText="position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.3);display:none;";
+ sd=document.createElement("div");sd.style.cssText="position:fixed;top:0;right:0;bottom:0;width:380px;max-width:90vw;z-index:99999;background:#f8f7f4;box-shadow:-4px 0 24px rgba(0,0,0,.12);display:none;flex-direction:column;font-family:-apple-system,PingFang SC,sans-serif;transform:translateX(100%);transition:transform .25s ease;";
+ sd.innerHTML='<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #e5e0d8;flex-shrink:0;"><div><strong style="font-size:16px;">📒 学习笔记本</strong><span id="sc" style="font-size:12px;color:#999;margin-left:8px;"></span></div><button id="sc_close" style="border:none;background:transparent;font-size:20px;cursor:pointer;color:#888;padding:4px 8px;border-radius:6px;">✕</button></div><div id="sb" style="flex:1;overflow-y:auto;padding:12px 16px;"></div><div style="padding:10px 16px;border-top:1px solid #e5e0d8;font-size:11px;color:#bbb;text-align:center;flex-shrink:0;">右键选中文字 → 标记或记笔记</div>';
+ document.body.appendChild(ov);document.body.appendChild(sd);
+ ov.onclick=function(){tog(false);};document.getElementById("sc_close").onclick=function(){tog(false);};
+}
+function tog(show){
+ mkSide();
+ var open=(show!==undefined?show:(sd.style.display==="none"||sd.style.transform==="translateX(100%)"));
+ if(open){sd.style.display="flex";ov.style.display="block";requestAnimationFrame(function(){sd.style.transform="translateX(0)";});renderSB();}
+ else{sd.style.transform="translateX(100%)";ov.style.display="none";setTimeout(function(){if(sd.style.transform==="translateX(100%)")sd.style.display="none";},260);}
+}
+function renderSB(){
+ var b=document.getElementById("sb");if(!b)return;
+ var hs=_h||[];document.getElementById("sc").textContent=hs.length?"("+hs.length+"条)":"(空)";
+ if(!hs.length){b.innerHTML='<div style="text-align:center;padding:60px 20px;color:#aaa;font-size:14px;">📖 还没有标记<br><span style="font-size:12px;">选中文字 → 右键 → 标记</span></div>';return;}
+ var gr={};hs.forEach(function(h){var k=h.issue||0;if(!gr[k])gr[k]={issue:k,title:h.title||("第"+k+"期"),hs:[]};gr[k].hs.push(h);});
+ var so=Object.values(gr).sort(function(a,b){return b.issue-a.issue;}),html="";
+ so.forEach(function(g){html+='<div style="margin-bottom:16px;"><div style="font-size:11px;color:#888;letter-spacing:1px;margin-bottom:6px;padding:0 4px;">第'+g.issue+"期 · "+g.title+" ("+g.hs.length+")</div>";
+ g.hs.forEach(function(h){html+='<div class="mc" data-id="'+h.id+'" style="background:#fff;border:1px solid #e5e0d8;border-radius:8px;padding:10px 12px;margin-bottom:6px;cursor:pointer;"><div style="font-size:13px;line-height:1.6;color:#3a3520;padding:4px 6px;background:#fef7e0;border-radius:4px;margin-bottom:6px;">'+esc(h.text)+'</div>';
+ if(h.note)html+='<div style="font-size:12px;color:#2a5a48;line-height:1.5;padding:6px 8px;background:#eef7f2;border-radius:4px;margin-bottom:6px;border-left:2px solid #2d8a6e;">💬 '+esc(h.note)+'</div>';
+ html+='<div style="display:flex;gap:4px;justify-content:flex-end;"><button class="mcnb" style="border:none;background:transparent;color:#888;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:11px;">'+(h.note?"✏️":"💬")+'</button><button class="mcdb" style="border:none;background:transparent;color:#c0392b;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:11px;">🗑️</button></div></div>';});
+ html+="</div>";});b.innerHTML=html;
+ b.querySelectorAll(".mcdb").forEach(function(btn){btn.onclick=function(){var c=btn.closest(".mc"),id=c.dataset.id;delHl(id);renderSB();var mk=document.querySelector('.mh[data-id="'+id+'"]');if(mk){mk.parentNode.replaceChild(document.createTextNode(mk.textContent),mk);mk.parentNode.normalize();}toast("已删除");};});
+ b.querySelectorAll(".mcnb").forEach(function(btn){btn.onclick=function(){var c=btn.closest(".mc"),id=c.dataset.id;var h=_h.find(function(x){return x.id===id;});if(!h)return;var n=prompt("编辑笔记：",h.note||"");if(n!==null){updHl(id,n);renderSB();var mk=document.querySelector('.mh[data-id="'+id+'"]');if(mk){if(n.trim()){mk.title="💡 "+n;mk.style.borderBottom="2px solid #d4a017";}else{mk.title="";mk.style.borderBottom="";}}toast("✅ 笔记已保存");}};});
+ b.querySelectorAll(".mc").forEach(function(c){c.onclick=function(e){if(e.target.closest("button"))return;var mk=document.querySelector('.mh[data-id="'+c.dataset.id+'"]');if(mk){mk.scrollIntoView({behavior:"smooth",block:"center"});mk.style.background="#ffeb7a";setTimeout(function(){mk.style.background="#f5d742";},1500);}};});
+}
+function badge(){var el=document.getElementById("bdg");if(el){var c=_h.length;el.textContent=c;el.style.display=c>0?"inline":"none";}}
+function setupBtn(){if(document.getElementById("fab"))return;var b=document.createElement("button");b.id="fab";b.innerHTML='📒 笔记本 <span id="bdg" style="background:#c8a45c;color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:4px;font-weight:600;display:none;">0</span>';b.style.cssText="position:fixed;bottom:24px;right:24px;z-index:99997;background:#2d2d3f;color:#f0ede8;padding:10px 18px;border-radius:24px;font-family:-apple-system,PingFang SC,sans-serif;font-size:13px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.15);cursor:pointer;border:1px solid rgba(255,255,255,.08);";b.onmouseover=function(){b.style.background="#3d3d55";b.style.transform="translateY(-2px)";};b.onmouseout=function(){b.style.background="#2d2d3f";b.style.transform="";};b.onclick=function(){tog();};document.body.appendChild(b);badge();}
+var st=document.createElement("style");st.textContent=".mh{background:#f5d742;color:inherit;border-radius:2px;padding:0 2px;cursor:pointer;}.mh:hover{background:#ffeb7a;}.mc{transition:box-shadow .15s;}.mc:hover{box-shadow:0 1px 6px rgba(0,0,0,.06);}.mc button:hover{background:#eee!important;}::selection{background:#f5d742;color:#1a1a2e;}";document.head.appendChild(st);
+restore();setupBtn();
+})();
+</script>
+</body>
+</html>
