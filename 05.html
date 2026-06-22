@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>芒格计划 · 05：进化的算法</title>
+<style>
+:root{--bg:#faf8f5;--text:#1a1a2e;--accent:#5bc0a0;--accent-dark:#3ea080}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Georgia","Noto Serif SC",serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:17px}
+.hero{background:linear-gradient(135deg,#0d2b1f,#1a3d2e,#1e5540);color:#f0ede8;padding:100px 24px 80px;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(91,192,160,0.12),transparent 60%)}
+.hero>*{position:relative;z-index:1}
+.hero-badge{display:inline-block;border:1px solid var(--accent);color:var(--accent);font-family:-apple-system,"PingFang SC",sans-serif;font-size:12px;letter-spacing:3px;padding:4px 16px;border-radius:20px;margin-bottom:32px;text-transform:uppercase}
+.hero h1{font-size:clamp(32px,6vw,56px);font-weight:700;letter-spacing:2px;margin-bottom:12px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .sub{font-size:clamp(16px,2.5vw,22px);color:#b8b0a0;font-family:-apple-system,"PingFang SC",sans-serif;font-weight:300;margin-bottom:8px}
+.hero .meta{font-family:-apple-system,"PingFang SC",sans-serif;font-size:13px;color:#888;letter-spacing:1px}
+.container{max-width:740px;margin:0 auto;padding:0 24px}
+.intro{margin-top:-40px;position:relative;z-index:2}
+.intro-card{background:#fff;border-radius:12px;padding:40px 36px;box-shadow:0 4px 24px rgba(0,0,0,0.06);border:1px solid #e5e0d8}
+.intro-card p{margin-bottom:16px;color:#444}.intro-card p:last-child{margin-bottom:0}
+section{padding:60px 0}
+.section-label{font-family:-apple-system,"PingFang SC",sans-serif;font-size:11px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+h2{font-size:28px;font-weight:700;margin-bottom:24px;line-height:1.4}
+h3{font-size:20px;font-weight:600;margin:32px 0 12px;color:#1a1a2e}
+p{margin-bottom:16px;color:#444}
+blockquote{background:#f3f0ea;border-left:4px solid var(--accent);padding:20px 24px;margin:24px 0;border-radius:0 8px 8px 0;font-style:italic;color:#555}
+blockquote cite{display:block;margin-top:8px;font-size:14px;font-style:normal;color:#999}
+.highlight-box{background:linear-gradient(135deg,#f0f8f3,#e8f4ec);border:1px solid #b8d8c8;border-radius:10px;padding:28px 32px;margin:28px 0}
+.highlight-box .label{font-family:-apple-system,"PingFang SC",sans-serif;font-size:12px;letter-spacing:2px;color:var(--accent-dark);margin-bottom:8px}
+.highlight-box p{margin-bottom:0;color:#3a5a4a}
+details{background:#fff;border:1px solid #e5e0d8;border-radius:10px;margin:16px 0;overflow:hidden}
+details summary{cursor:pointer;padding:18px 24px;font-weight:600;font-size:17px;list-style:none;display:flex;align-items:center;gap:12px;user-select:none}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:'+';display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:16px;flex-shrink:0}
+details[open] summary::before{content:'−'}
+details .content{padding:0 24px 20px;color:#444}
+.divider-solid{border:0;height:1px;background:linear-gradient(to right,transparent,#e5e0d8,transparent);margin:48px 0}
+footer{text-align:center;padding:60px 24px;color:#999;font-size:14px;font-family:-apple-system,"PingFang SC",sans-serif}
+@media(max-width:600px){body{font-size:16px}.hero{padding:60px 20px}.intro-card{padding:28px 20px}section{padding:40px 0}details summary{padding:14px 18px}}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="hero-badge">芒格计划 · 第5期</div>
+<h1>进化的<em>算法</em></h1>
+<p class="sub">为什么没有"设计者"的系统也能越来越精妙？</p>
+<p class="meta">自然选择 × 变异与筛选</p>
+</header>
+<div class="container">
+<div class="intro"><div class="intro-card">
+<p>第一期留了个问题：如果熵增不可抗拒，为什么宇宙中还有眼睛、大脑、文明这些越来越精妙的东西？本期来回答。</p>
+<p>答案藏在一个跨越三个词的算法里：<strong>变异（Variation）</strong>、<strong>选择（Selection）</strong>、<strong>保留（Retention）</strong>。这三样东西乘以足够长的时间，就能产生任何你想象得到的复杂性——不需要设计师，不需要蓝图，不需要任何人的"聪明"。</p>
+</div></div>
+
+<section>
+<span class="section-label">Week 5</span>
+<h2>进化的算法</h2>
+
+<h3>🔬 硬科学模型：进化是一种算法</h3>
+<p>达尔文的核心洞见不是"人是从猴子变来的"——那是肤浅的误读。他真正的洞见是：<strong>进化是一种算法。</strong>任何满足以下三个条件的系统，都会自发产生越来越高的复杂度：</p>
+<p><strong>变异（Variation）：</strong>个体之间存在随机的差异。基因突变、复制错误、性重组——这些随机的变化为自然选择提供了原材料。</p>
+<p><strong>选择（Selection）：</strong>环境对某些变异更加"友好"。跑得更快的羚羊更不容易被吃掉，于是它们的基因更容易流传。选择不是随机的——它是环境对变异的非随机筛选。</p>
+<p><strong>保留（Retention）：</strong>那些被环境选中的优势会被继承下去。DNA的复制机制保证了"好用的设计"能够跨代传递。</p>
+<p>三个条件——变异、选择、保留——在亿万年时间尺度上迭代，就能产生你想象得到的任何复杂性。翅膀、回声定位、光合作用、人类大脑——全部来自这个极其简单的三步骤算法。</p>
+
+<blockquote>"如果说眼睛是自然选择的杰作，那么它也是一位盲人钟表匠的作品——他看不见自己在做什么，却能用时间堆出任何精妙的结构。"<cite>—— 理查德·道金斯《盲眼钟表匠》</cite></blockquote>
+
+<h3>🔬 进化不是"进步"，是"适应"</h3>
+<p>一个关键的纠正：<strong>进化没有方向。</strong>它不是从"低级"到"高级"的线性攀升。进化只有一个标准：在当前环境下足够好用。一旦"足够好用"，进化就停下来——它不会继续优化到"完美"。</p>
+<p>人眼就是活生生的证据。视网膜是倒着装的——光线要先穿过密密麻麻的血管层，才能到达感光细胞。这导致盲点和各种视觉缺陷。任何有自尊心的工程师都不会这样设计一个摄像头。但进化是个"打补丁"的过程——它不推倒重来，只是在已有的基础上修修补补。因为视网膜倒着装"够用了"，进化就没有动力把它翻转过来。</p>
+<p><strong>进化不优化，它打补丁。不求最好，只求够用。</strong></p>
+
+<h3>💎 明珠概念</h3>
+<div class="highlight-box"><div class="label">一句话记住它</div>
+<p><strong>随机变异 + 非随机关联筛选 × 足够长的时间 = 任何复杂度都能涌现。</strong></p></div>
+
+<h3>🌙 晚间引子</h3>
+<p><strong>如果你在路边捡到一块精密的机械表，你不会认为它是自然形成的。但人类的眼睛比任何机械表复杂一百万倍——而它确实没有设计师。</strong></p>
+<p>这个问题是进化论真正颠覆性的地方：复杂的秩序可以自发涌现，不需要任何设计者。如果生物体是这样，那你的信念、习惯、价值观呢？你觉得你头脑中的观念是你"自己想出来"的，还是被某种筛选机制——你所在的文化、信息环境、同辈压力——无声无息地塑造出来的？</p>
+<p>更令人不安的问题是：哪些观念在你脑中存活，不是因为它们正确，而是因为它们擅长复制自己？</p>
+
+<h3>🏛️ 人文社科对照</h3>
+<details><summary>公司 vs 市场——设计者与进化者的对决</summary><div class="content">
+<p><strong>公司是自上而下设计的，市场是自下而上进化的。</strong></p>
+<p>这解释了为什么计划经济总是输给市场经济——这不是意识形态之争，而是一个单设计者 vs 并行实验的算法问题。计划经济靠少数聪明人"设计"整个经济体的运行，而市场经济让千万个体同时进行无数小实验——成功者被市场选中和放大，失败者被淘汰。</p>
+<p>哈耶克的核心论证：<strong>知识是分散的。</strong>没有任何一个大脑能掌握调配一个经济体所需的全部信息。价格系统本质上是一个信息发现机制——它让分散在千万个体头脑中的局部知识，通过一个简单的信号（价格）汇总成集体智慧。这不是任何人的设计，这是进化出来的秩序。</p>
+<p>市场不是完美无缺的——但在"发现有用信息"这件事上，它所用的算法——大规模并行试错（变异）、市场反馈（选择）、利润再投资（保留）——和自然选择一模一样。</p>
+</div></details>
+<details><summary>模因进化——观念的生存法则</summary><div class="content">
+<p>道金斯提出"模因"（meme）概念：<strong>观念也在进化。</strong>一个信念之所以能在人群中存活和传播，不是因为它是对的，而是因为它擅长复制自己。</p>
+<p>审视一下：<strong>阴谋论为何比复杂真相传播得更快？</strong>不是因为它更真实，而是因为它的"复制效率"更高——更简单、更具情绪冲击力、更容易被复述、更适合在社交媒体上被一键转发。"蜥蜴人控制世界"比"全球化供应链导致的结构性通胀"好讲一百倍，所以前者传播得更广。</p>
+<p>"吸血鬼传说"比"传染病生物学"更容易流传，不是因为前者更准确，而是因为前者的叙事结构更符合人类大脑的接收偏好——有反派、有受害者、有戏剧性。</p>
+<p><strong>审视你今天相信的一切：有多少是你主动"思考"出来的，有多少是因为它们反复出现在你的信息环境中而被"选择"进你大脑的？</strong>模因进化意味着：你所在的信息环境就是你的选择压力。如果你不主动设计自己的信息食谱，算法会替你决定——而算法的"选择标准"是注意力，不是真理性。</p>
+</div></details>
+<details><summary>边缘创新——为什么颠覆总来自车库</summary><div class="content">
+<p>在生物学中，<strong>新物种往往在生态位的边缘涌现</strong>，而非中心地带。中心地带竞争激烈但稳定——顶级的捕食者占据了最肥沃的资源。边缘地带压力大、资源少，但竞争也小——于是奇特的变异更有可能存活并发展壮大。</p>
+<p>商业领域完全一样：<strong>颠覆性创新几乎总是来自边缘。</strong>克里斯坦森的《创新者的窘境》本质上就是用进化论的逻辑解释为什么大公司做对了所有事情，却仍然被颠覆。大公司是"中心物种"——利润来自现有客户，激励结构指向优化现有产品。颠覆者来自边缘——从大公司不屑于服务的低端市场或新兴市场切入，在被忽视的生态位上快速进化，最终反噬中心。</p>
+<p>个人电脑（苹果从车库起步）、电商（亚马逊从卖书起家）、电动车（特斯拉从被嘲笑的跑车开始）——全是边缘创新的案例。中心地带是"局部最优"的陷阱。边缘才是"全局探索"的发生地。</p>
+<p>问问自己：你现在所在的位置，是生态位的中心还是边缘？</p>
+</div></details>
+
+<h3>🔗 联结箱：回到熵增（第1期）</h3>
+<div class="highlight-box" style="background:linear-gradient(135deg,#eef5ea,#e3eee0);border-color:#b8d0a8;">
+<div class="label">🔗 与第1期的联结</div>
+<p><strong>进化并不违反热力学第二定律。</strong>它在局部创造秩序（一个复杂的生命体），代价是在更大的环境中产生更多的熵（新陈代谢散发的热量、太阳的能量输入）。</p>
+<p>你每一次"变得更有序"——整理房间、学习新知识、打造一个组织——都不是免费的。你只是在用外部输入的能量，把熵成本转移到了更大的系统中。进化没有魔术，它遵守物理法则：你要秩序，就得付能量。</p></div>
+
+<h3>🔄 反过来想</h3>
+<div class="highlight-box" style="background:linear-gradient(135deg,#eef2f7,#e4e9f0);border-color:#c0c8d8;">
+<div class="label">🚀 思考题</div>
+<p><strong>进化依赖随机变异（试错），人类天生厌恶失败。什么样的制度和文化环境最能促进创新的保留和放大？</strong></p>
+<p style="margin-top:12px;font-size:15px;color:#4a5a7a;">提示：硅谷对"快速失败"的崇拜并非矫情——它是一个进化系统在有意降低"试错成本"。科学方法论（假说→实验→同行验证）本身就是进化算法。专利制度保护了"变异"的回报。想一想：什么样的环境能让小规模、低成本的试错大量发生，而又能诚实地筛选和放大其中真正有效的部分？</p></div>
+
+<hr class="divider-solid">
+
+<h3>🧠 给你的启示</h3>
+<p><strong>把自己当作一个进化系统。</strong>你不是一个需要被"设计"出来的完美产品——你是一个持续迭代的进化过程。</p>
+<p><strong>增加变异：</strong>读你领域之外的书，与观点不同的人对话，尝试让你不舒服的体验。没有变异，就没有进化——只有重复。在你的舒适区之外，才有新物种出现的可能性。</p>
+<p><strong>建立诚实的选择机制：</strong>保持决策日记（Decision Journal）。记录你的预测、理由和结果。没有诚实的反馈，你无法区分"好的运气"和"好的策略"。大多数人失败不是因为没有尝试，而是因为没有一个诚实的筛选机制来告诉他们哪些尝试是有效的。</p>
+<p><strong>放大有效的东西：</strong>发现什么在起作用后，加倍投入。复利效应在进化中同样成立——微小的优势，在足够长的时间尺度上，会产生天文数字级的差异。花时间和精力在你已经验证有效的方向上，而不是不断追逐新事物。</p>
+<p><strong>警惕成为"中心物种"：</strong>最危险的地方是舒适区。当你发现自己处于一个既得利益稳固、竞争压力小的环境中时，你的适应能力反而在悄悄退化——就像洞穴鱼在黑暗中失去眼睛。边缘虽不舒服，但它是活力的来源。偶尔把自己推到生态位的边缘，让选择压力重新作用于你。</p>
+
+<blockquote>"如果我要给人类有史以来最伟大的思想颁奖，我会颁给达尔文——排在牛顿、爱因斯坦和其他所有人前面。"<cite>—— 丹尼尔·丹尼特《达尔文的危险思想》，第21页</cite></blockquote>
+</section>
+<hr class="divider-solid">
+<footer>
+<p>芒格计划 · 第5期</p>
+<nav style="margin-top:12px;display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;">
+<a href="04.html" style="color:#c8a45c;text-decoration:none;font-size:14px;">← 上一篇：决策的迷局</a>
+<span style="color:#ddd;">|</span>
+<a href="index.html" style="color:#c8a45c;text-decoration:none;font-size:14px;">返回目录</a>
+<span style="color:#ddd;">|</span>
+<span style="color:#888;font-size:14px;">下一篇：敬请期待</span>
+</nav>
+</footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+var _h=[];
+try{var r=localStorage.getItem("munger_backup");if(r)_h=JSON.parse(r);}catch(e){}
+function _s(){try{localStorage.setItem("munger_backup",JSON.stringify(_h));}catch(e){}}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function info(){
+ var b=document.querySelector(".hero-badge");if(!b)return{n:0};
+ var t=b.textContent,m=t.match(/(\d+)/);
+ if(!m){var cn={"一":1,"二":2,"三":3,"四":4,"五":5,"六":6};var x=t.match(/[一二三四五六]/);if(x)m=[x[0],cn[x[0]]||0];}
+ return{n:m?parseInt(m[1]):0,t:(document.querySelector(".hero h1")?.textContent||"")};
+}
+function addHl(tx,nt){
+ var i=info();if(!i.n)return null;
+ var o={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),issue:i.n,title:i.t,text:tx.trim(),note:(nt||"").trim(),ts:new Date().toISOString()};
+ _h.push(o);_s();return o;
+}
+function delHl(id){_h=_h.filter(function(x){return x.id!==id;});_s();}
+function updHl(id,nt){var x=_h.find(function(y){return y.id===id;});if(x){x.note=nt.trim();x.upd=new Date().toISOString();_s();}}
+var tb=null,pu=null,sv="",sr=null;
+function mkUI(){
+ if(tb)return;
+ tb=document.createElement("div");tb.id="tb";tb.style.cssText="position:fixed;z-index:99999;display:none;background:#2d2d3f;border-radius:8px;padding:4px;box-shadow:0 4px 16px rgba(0,0,0,.25);font-family:-apple-system,PingFang SC,sans-serif;gap:4px;";
+ var bb=document.createElement("button");bb.textContent="⭐ 标记";bb.style.cssText="border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit;background:#f5d742;color:#1a1a2e;font-weight:600;";bb.onmouseover=function(){bb.style.background="#ffe066";};bb.onmouseout=function(){bb.style.background="#f5d742";};bb.onclick=function(){act(false);};
+ var nb=document.createElement("button");nb.textContent="📝 记笔记";nb.style.cssText="border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit;background:#444;color:#eee;";nb.onmouseover=function(){nb.style.background="#555";};nb.onmouseout=function(){nb.style.background="#444";};nb.onclick=function(){act(true);};
+ tb.appendChild(bb);tb.appendChild(nb);document.body.appendChild(tb);
+ pu=document.createElement("div");pu.id="pu";pu.style.cssText="position:fixed;z-index:100000;display:none;background:#fff;border-radius:12px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.2);font-family:-apple-system,PingFang SC,sans-serif;width:340px;max-width:90vw;";
+ pu.innerHTML='<div style="font-size:14px;font-weight:600;margin-bottom:10px;color:#333;">📝 记录灵感</div><div id="mq" style="font-size:13px;color:#888;margin-bottom:10px;padding:8px 12px;background:#f5f5f5;border-radius:6px;line-height:1.5;max-height:80px;overflow-y:auto;"></div><textarea id="mt" placeholder="写下你的想法……" style="width:100%;min-height:80px;border:1px solid #ddd;border-radius:6px;padding:8px;font-size:14px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px;"><button id="mc" style="border:none;background:#f0f0f0;color:#666;padding:6px 16px;border-radius:6px;cursor:pointer;font-size:13px;">取消</button><button id="ms" style="border:none;background:#2d8a6e;color:#fff;padding:6px 16px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;">保存笔记</button></div>';
+ document.body.appendChild(pu);
+ document.getElementById("mc").onclick=function(){pu.style.display="none";};
+ document.getElementById("ms").onclick=function(){var n=document.getElementById("mt").value,q=document.getElementById("mq").dataset.text||"";if(q){addHl(q,n);pu.style.display="none";document.getElementById("mt").value="";toast("✅ 笔记已保存");badge();}};
+}
+function show(x,y){mkUI();tb.style.display="flex";tb.style.left=Math.max(8,Math.min(x,window.innerWidth-180))+"px";tb.style.top=(y+12)+"px";}
+function hide(){if(tb)tb.style.display="none";sv="";sr=null;}
+function act(note){
+ var t=sv;if(!t)return;
+ if(note){var q=document.getElementById("mq");if(!q)return;q.textContent="「"+t.slice(0,100)+(t.length>100?"…」":"」");q.dataset.text=t;document.getElementById("mt").value="";var tr=tb.getBoundingClientRect();pu.style.top=Math.max(20,tr.top-320)+"px";pu.style.left=Math.max(20,Math.min(tr.left,window.innerWidth-360))+"px";pu.style.display="block";document.getElementById("mt").focus();hide();return;}
+ addHl(t,"");toast("⭐ 已标记");badge();
+ if(sr){try{var m=document.createElement("mark");m.className="mh";m.style.cssText="background:#f5d742;color:inherit;border-radius:2px;padding:0 2px;cursor:pointer;";sr.surroundContents(m);m.style.background="#ffeb7a";setTimeout(function(){m.style.background="#f5d742";},300);}catch(e){sr=null;}}
+ var s=window.getSelection();if(s)s.removeAllRanges();sv="";sr=null;hide();
+}
+document.addEventListener("contextmenu",function(e){
+ if(pu&&pu.style.display!=="none")return;
+ var s=window.getSelection();if(!s||s.isCollapsed||!s.toString().trim())return;
+ e.preventDefault();
+ try{var r=s.getRangeAt(0);sv=s.toString().trim();sr=r.cloneRange();show(e.clientX,e.clientY);}catch(er){}
+});
+document.addEventListener("mousedown",function(e){
+ if(tb&&tb.contains(e.target))return;
+ if(pu&&pu.style.display!=="none"){if(pu.contains(e.target))return;pu.style.display="none";}
+ hide();
+});
+function restore(){
+ var i=info();if(!i.n)return;
+ var list=_h.filter(function(x){return x.issue===i.n;});if(!list.length)return;
+ setTimeout(function(){list.forEach(function(h){restoreOne(h);});},300);
+}
+function restoreOne(h){
+ try{
+  var c=document.querySelector(".container")||document.body;
+  var w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT),ns=[];
+  while(w.nextNode())ns.push(w.currentNode);
+  for(var i=0;i<ns.length;i++){
+   var nd=ns[i],idx=nd.textContent.indexOf(h.text);if(idx<0)continue;
+   var r=document.createRange();r.setStart(nd,idx);r.setEnd(nd,idx+h.text.length);
+   var m=document.createElement("mark");m.className="mh";m.dataset.id=h.id;
+   m.style.cssText="background:#f5d742;color:inherit;border-radius:2px;padding:0 2px;cursor:pointer;";
+   if(h.note){m.title="💡 "+h.note;m.style.borderBottom="2px solid #d4a017";}
+   m.onclick=function(id,note){return function(e){e.stopPropagation();bubble(e.target,id,note);};}(h.id,h.note);
+   r.surroundContents(m);return;
+  }
+ }catch(e){}
+}
+function bubble(mk,id,note){
+ var e=document.querySelector(".mp-bb");if(e)e.remove();
+ var b=document.createElement("div");b.className="mp-bb";
+ b.style.cssText="position:fixed;z-index:99998;background:#fff;border-radius:10px;padding:14px 18px;box-shadow:0 4px 24px rgba(0,0,0,.15);font-family:-apple-system,PingFang SC,sans-serif;font-size:14px;max-width:320px;border:1px solid #eee;";
+ var r=mk.getBoundingClientRect();b.style.top=(r.bottom+8)+"px";b.style.left=Math.max(8,Math.min(r.left,window.innerWidth-340))+"px";
+ var h='<div style="font-size:12px;color:#999;margin-bottom:6px;">已标记'+(note?" · 有笔记":"")+'</div>';
+ if(note)h+='<div style="color:#333;line-height:1.5;margin-bottom:10px;padding:8px 10px;background:#faf6ee;border-radius:6px;">💬 '+esc(note)+'</div>';
+ h+='<div style="display:flex;gap:6px;">';
+ if(!note)h+='<button id="bb_add" style="border:none;background:#2d8a6e;color:#fff;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;">添加笔记</button>';
+ h+='<button id="bb_del" style="border:none;background:#f5f5f5;color:#c0392b;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;">删除标记</button></div>';
+ b.innerHTML=h;document.body.appendChild(b);
+ document.getElementById("bb_del").onclick=function(){delHl(id);mk.style.opacity="0.3";mk.style.background="#eee";b.remove();};
+ var ab=document.getElementById("bb_add");if(ab)ab.onclick=function(){
+  b.innerHTML='<div style="font-size:13px;font-weight:600;margin-bottom:8px;color:#333;">✏️ 添加笔记</div><textarea id="bb_ta" placeholder="写下你的想法……" style="width:100%;min-height:60px;border:1px solid #ddd;border-radius:6px;padding:8px;font-size:13px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea><div style="display:flex;gap:6px;justify-content:flex-end;margin-top:8px;"><button id="bb_cancel" style="border:none;background:#f0f0f0;color:#666;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;">取消</button><button id="bb_save" style="border:none;background:#2d8a6e;color:#fff;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;">保存</button></div>';
+  document.getElementById("bb_ta").focus();
+  document.getElementById("bb_cancel").onclick=function(){b.remove();};
+  document.getElementById("bb_save").onclick=function(){var n=document.getElementById("bb_ta").value;if(n){updHl(id,n);mk.title="💡 "+n;mk.style.borderBottom="2px solid #d4a017";toast("✅ 笔记已保存");}b.remove();};
+ };
+ var cl=function(ev){if(!b.contains(ev.target)&&ev.target!==mk){b.remove();document.removeEventListener("mousedown",cl);}};
+ setTimeout(function(){document.addEventListener("mousedown",cl);},0);
+}
+function toast(msg){
+ var t=document.createElement("div");t.textContent=msg;
+ t.style.cssText="position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#2d2d3f;color:#fff;padding:10px 24px;border-radius:8px;font-family:-apple-system,PingFang SC,sans-serif;font-size:14px;z-index:999999;box-shadow:0 4px 20px rgba(0,0,0,.2);opacity:0;transition:opacity .3s;";
+ document.body.appendChild(t);requestAnimationFrame(function(){t.style.opacity="1";});
+ setTimeout(function(){t.style.opacity="0";setTimeout(function(){t.remove();},300);},2000);
+}
+var sd=null,ov=null;
+function mkSide(){
+ if(sd)return;
+ ov=document.createElement("div");ov.style.cssText="position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.3);display:none;";
+ sd=document.createElement("div");sd.style.cssText="position:fixed;top:0;right:0;bottom:0;width:380px;max-width:90vw;z-index:99999;background:#f8f7f4;box-shadow:-4px 0 24px rgba(0,0,0,.12);display:none;flex-direction:column;font-family:-apple-system,PingFang SC,sans-serif;transform:translateX(100%);transition:transform .25s ease;";
+ sd.innerHTML='<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #e5e0d8;flex-shrink:0;"><div><strong style="font-size:16px;">📒 学习笔记本</strong><span id="sc" style="font-size:12px;color:#999;margin-left:8px;"></span></div><button id="sc_close" style="border:none;background:transparent;font-size:20px;cursor:pointer;color:#888;padding:4px 8px;border-radius:6px;">✕</button></div><div id="sb" style="flex:1;overflow-y:auto;padding:12px 16px;"></div><div style="padding:10px 16px;border-top:1px solid #e5e0d8;font-size:11px;color:#bbb;text-align:center;flex-shrink:0;">右键选中文字 → 标记或记笔记</div>';
+ document.body.appendChild(ov);document.body.appendChild(sd);
+ ov.onclick=function(){tog(false);};document.getElementById("sc_close").onclick=function(){tog(false);};
+}
+function tog(show){
+ mkSide();
+ var open=(show!==undefined?show:(sd.style.display==="none"||sd.style.transform==="translateX(100%)"));
+ if(open){sd.style.display="flex";ov.style.display="block";requestAnimationFrame(function(){sd.style.transform="translateX(0)";});renderSB();}
+ else{sd.style.transform="translateX(100%)";ov.style.display="none";setTimeout(function(){if(sd.style.transform==="translateX(100%)")sd.style.display="none";},260);}
+}
+function renderSB(){
+ var b=document.getElementById("sb");if(!b)return;
+ var hs=_h||[];document.getElementById("sc").textContent=hs.length?"("+hs.length+"条)":"(空)";
+ if(!hs.length){b.innerHTML='<div style="text-align:center;padding:60px 20px;color:#aaa;font-size:14px;">📖 还没有标记<br><span style="font-size:12px;">选中文字 → 右键 → 标记</span></div>';return;}
+ var gr={};hs.forEach(function(h){var k=h.issue||0;if(!gr[k])gr[k]={issue:k,title:h.title||("第"+k+"期"),hs:[]};gr[k].hs.push(h);});
+ var so=Object.values(gr).sort(function(a,b){return b.issue-a.issue;}),html="";
+ so.forEach(function(g){html+='<div style="margin-bottom:16px;"><div style="font-size:11px;color:#888;letter-spacing:1px;margin-bottom:6px;padding:0 4px;">第'+g.issue+"期 · "+g.title+" ("+g.hs.length+")</div>";
+ g.hs.forEach(function(h){html+='<div class="mc" data-id="'+h.id+'" style="background:#fff;border:1px solid #e5e0d8;border-radius:8px;padding:10px 12px;margin-bottom:6px;cursor:pointer;"><div style="font-size:13px;line-height:1.6;color:#3a3520;padding:4px 6px;background:#fef7e0;border-radius:4px;margin-bottom:6px;">'+esc(h.text)+'</div>';
+ if(h.note)html+='<div style="font-size:12px;color:#2a5a48;line-height:1.5;padding:6px 8px;background:#eef7f2;border-radius:4px;margin-bottom:6px;border-left:2px solid #2d8a6e;">💬 '+esc(h.note)+'</div>';
+ html+='<div style="display:flex;gap:4px;justify-content:flex-end;"><button class="mcnb" style="border:none;background:transparent;color:#888;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:11px;">'+(h.note?"✏️":"💬")+'</button><button class="mcdb" style="border:none;background:transparent;color:#c0392b;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:11px;">🗑️</button></div></div>';});
+ html+="</div>";});b.innerHTML=html;
+ b.querySelectorAll(".mcdb").forEach(function(btn){btn.onclick=function(){var c=btn.closest(".mc"),id=c.dataset.id;delHl(id);renderSB();var mk=document.querySelector('.mh[data-id="'+id+'"]');if(mk){mk.parentNode.replaceChild(document.createTextNode(mk.textContent),mk);mk.parentNode.normalize();}toast("已删除");};});
+ b.querySelectorAll(".mcnb").forEach(function(btn){btn.onclick=function(){var c=btn.closest(".mc"),id=c.dataset.id;var h=_h.find(function(x){return x.id===id;});if(!h)return;var n=prompt("编辑笔记：",h.note||"");if(n!==null){updHl(id,n);renderSB();var mk=document.querySelector('.mh[data-id="'+id+'"]');if(mk){if(n.trim()){mk.title="💡 "+n;mk.style.borderBottom="2px solid #d4a017";}else{mk.title="";mk.style.borderBottom="";}}toast("✅ 笔记已保存");}};});
+ b.querySelectorAll(".mc").forEach(function(c){c.onclick=function(e){if(e.target.closest("button"))return;var mk=document.querySelector('.mh[data-id="'+c.dataset.id+'"]');if(mk){mk.scrollIntoView({behavior:"smooth",block:"center"});mk.style.background="#ffeb7a";setTimeout(function(){mk.style.background="#f5d742";},1500);}};});
+}
+function badge(){var el=document.getElementById("bdg");if(el){var c=_h.length;el.textContent=c;el.style.display=c>0?"inline":"none";}}
+function setupBtn(){if(document.getElementById("fab"))return;var b=document.createElement("button");b.id="fab";b.innerHTML='📒 笔记本 <span id="bdg" style="background:#c8a45c;color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:4px;font-weight:600;display:none;">0</span>';b.style.cssText="position:fixed;bottom:24px;right:24px;z-index:99997;background:#2d2d3f;color:#f0ede8;padding:10px 18px;border-radius:24px;font-family:-apple-system,PingFang SC,sans-serif;font-size:13px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.15);cursor:pointer;border:1px solid rgba(255,255,255,.08);";b.onmouseover=function(){b.style.background="#3d3d55";b.style.transform="translateY(-2px)";};b.onmouseout=function(){b.style.background="#2d2d3f";b.style.transform="";};b.onclick=function(){tog();};document.body.appendChild(b);badge();}
+var st=document.createElement("style");st.textContent=".mh{background:#f5d742;color:inherit;border-radius:2px;padding:0 2px;cursor:pointer;}.mh:hover{background:#ffeb7a;}.mc{transition:box-shadow .15s;}.mc:hover{box-shadow:0 1px 6px rgba(0,0,0,.06);}.mc button:hover{background:#eee!important;}::selection{background:#f5d742;color:#1a1a2e;}";document.head.appendChild(st);
+restore();setupBtn();
+})();
+</script>
+</body>
+</html>
