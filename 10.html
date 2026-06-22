@@ -39,8 +39,7 @@ details .content{padding:0 24px 20px;color:#444}
 .divider-solid{border:0;height:1px;background:linear-gradient(to right,transparent,#e5e0d8,transparent);margin:48px 0}
 footer{text-align:center;padding:60px 24px;color:#999;font-size:14px;font-family:-apple-system,"PingFang SC",sans-serif}
 @media(max-width:600px){body{font-size:16px}.hero{padding:60px 20px}.intro-card{padding:28px 20px}section{padding:40px 0}details summary{padding:14px 18px}}
-
-@media(max-width:768px){.mp-mobile-bar{display:flex!important}}</style>
+</style>
 </head>
 <body>
 <header class="hero">
@@ -271,25 +270,6 @@ function setupBtn(){if(document.getElementById("fab"))return;var b=document.crea
 
 var st=document.createElement("style");st.textContent=".mh{background:#f5d742;color:inherit;border-radius:2px;padding:0 2px;cursor:pointer;}.mh:hover{background:#ffeb7a;}.mc{transition:box-shadow .15s;}.mc:hover{box-shadow:0 1px 6px rgba(0,0,0,.06);}.mc button:hover{background:#eee!important;}::selection{background:#f5d742;color:#1a1a2e;}";document.head.appendChild(st);
 restore();setupBtn();
-document.getElementById("mb-hl").onclick=function(){
- var s=window.getSelection();if(!s||s.isCollapsed||!s.toString().trim())return;
- sv=s.toString().trim();try{sr=s.getRangeAt(0).cloneRange();}catch(e){sr=null;}
- addHl(sv,"");toast("⭐ 已标记");badge();
- if(sr){try{var m=document.createElement("mark");m.className="mh";m.style.cssText="background:#f5d742;color:inherit;border-radius:2px;padding:0 2px;cursor:pointer;";sr.surroundContents(m);m.style.background="#ffeb7a";setTimeout(function(){m.style.background="#f5d742";},300);}catch(e){}}
- s.removeAllRanges();sv="";sr=null;
-};
-document.getElementById("mb-note").onclick=function(){
- var s=window.getSelection();if(!s||s.isCollapsed||!s.toString().trim()){toast("请先选中文字");return;}
- sv=s.toString().trim();try{sr=s.getRangeAt(0).cloneRange();}catch(e){sr=null;}
- var q=document.getElementById("mq");if(!q)return;
- q.textContent="「"+sv.slice(0,100)+(sv.length>100?"…」":"」");q.dataset.text=sv;
- document.getElementById("mt").value="";
- pu.style.display="block";
- var top=Math.max(20,window.innerHeight-400);pu.style.top=top+"px";
- pu.style.left="50%";pu.style.transform="translateX(-50%)";
- document.getElementById("mt").focus();
-};
-
 })();
 </script>
 </body>
