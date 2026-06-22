@@ -1,0 +1,30 @@
+name: 每周一推送
+
+on:
+  schedule:
+    - cron: "0 12 * * 1"  # UTC 12:00 = 北京时间 20:00
+  workflow_dispatch:       # 允许手动触发
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 找到最新期 → 发 ntfy 推送
+        run: |
+          LATEST=$(ls [0-9][0-9].html 2>/dev/null | sort -n | tail -1 | sed 's/.html//')
+          if [ -z "$LATEST" ]; then
+            LATEST="01"
+          fi
+
+          TITLE=$(grep -oP '<div class="model">\K[^<]+' "${LATEST}.html" | head -1)
+          H3=$(grep -oP '<h3>\K[^<]+' "${LATEST}.html" | head -1)
+
+          curl -H "Title: 芒格计划 · 第${LATEST}期" \
+               -H "Tags: book,calendar" \
+               -H "Click: https://zhuayuba.github.io/mungerplan/${LATEST}.html" \
+               -d "📐 ${TITLE}｜${H3}｜点击阅读 →" \
+               ntfy.sh/mungerplanlx
+
+          echo "已推送第 ${LATEST} 期"
