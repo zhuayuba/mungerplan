@@ -174,15 +174,16 @@ document.addEventListener("contextmenu",function(e){
  var s=window.getSelection();if(!s||s.isCollapsed||!s.toString().trim())return;
  e.preventDefault();
  try{var r=s.getRangeAt(0);sv=s.toString().trim();sr=r.cloneRange();show(e.clientX,e.clientY);}catch(er){}
-}););
+});););
 
-document.addEventListener("touchend",function(e){
+document.addEventListener("selectionchange",function(){
  if(pu&&pu.style.display!=="none")return;
- setTimeout(function(){
+ var _sc=setTimeout.bind(null,function(){
   var s=window.getSelection();if(!s||s.isCollapsed||!s.toString().trim()){hide();return;}
   try{var r=s.getRangeAt(0),rect=r.getBoundingClientRect();if(!rect||rect.width===0){hide();return;}
   sv=s.toString().trim();sr=r.cloneRange();show(rect.left+rect.width/2,rect.bottom+window.scrollY);}catch(er){hide();}
- },100);
+ },150);
+ _sc();
 }
 document.addEventListener("mousedown",function(e){
  if(tb&&tb.contains(e.target))return;
