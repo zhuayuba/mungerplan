@@ -172,7 +172,7 @@ document.addEventListener("contextmenu",function(e){
  var s=window.getSelection();if(!s||s.isCollapsed||!s.toString().trim())return;
  e.preventDefault();
  try{var r=s.getRangeAt(0);sv=s.toString().trim();sr=r.cloneRange();show(e.clientX,e.clientY);}catch(er){}
-}););
+});
 
 document.addEventListener("mousedown",function(e){
  if(tb&&tb.contains(e.target))return;
